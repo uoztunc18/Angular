@@ -1,0 +1,28 @@
+
+<div class="insert-form">
+  <input type="text" name="title" class="title-input" #title (keyup.enter)="addContact(title.value,phone.value)">
+  <input type="text" name="phone" class="title-input" #phone (keyup.enter)="addContact(title.value,phone.value)">
+  <button name="btnSave" class="btnsave-input" (click)="addContact(title.value,phone.value)">Save</button>
+</div>
+
+
+<h3>Toplam Kayıt Sayısı : {{contactList.length}}</h3>
+<table cellspacing="5px" cellpadding="5px" border="1px solid black;" style="width: 100%">
+  <tr>
+    <th>ID</th>
+    <th>Title</th>
+    <th>Phone</th>
+    <td>Status</td>
+    <td>#</td>
+  </tr>
+  <tr *ngFor="let contact of contactList">
+    <td>{{contact.id}}</td>
+    <td>{{contact.Title}}</td>
+    <td>{{contact.Phone}}</td>
+    <td><input type="checkbox" name="chcStatus" [(ngModel)]="contact.Status"></td>
+    <td>
+      <button name="btnDelete" (click)="deleteContact(contact.id)">Delete</button>
+      <button name="btnUpdate" [routerLink]="['/contact-update', contact.id]" >Update</button>
+    </td>
+  </tr>
+</table>
